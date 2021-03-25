@@ -1,0 +1,8 @@
+
+    <%= form_with(model: [@book, @comment], remote: true) do |f|%>
+      <%= f.text_area :body %>
+      <%= f.submit "送信", class: "btn btn-primary" %>
+    <% end %>
+    <div class="comment__table">
+      <%= render 'book_comments/table', book_comments: @book.book_comments%>
+    </div>
