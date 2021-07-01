@@ -1,0 +1,22 @@
+<h2><%= @user.name %>さんとのチャット</h2>
+
+<table class="table table-borderless text-center">
+    <% @chats.each do |chat| %>
+        <tr>
+            <% if chat.my_id == current_user.id %>
+                <td><%= chat.text %></td>
+                <td></td>
+                <td></td>
+            <% elsif chat.my_id == @user.id %>
+                <td></td>
+                <td></td>
+                <td><%= chat.text %></td>
+            <% end %>
+        </tr>
+    <% end %>
+</table>
+
+<%= form_with model: @chat, url: chat_path(@user), local: true do |f| %>
+    <%= f.text_field :text %>
+    <% f.submit %>
+<% end %>
