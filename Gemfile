@@ -71,3 +71,5 @@ gem 'sassc', '2.2.1'
 gem 'jquery-rails'
 
 gem "dotenv-rails"
+
+gem "impressionist", '~>1.6.1'
