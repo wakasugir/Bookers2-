@@ -13,62 +13,71 @@
     <h2>Books</h2>
 
     <%= render 'books/index',books: @books %>
+    
+    <%= form_tag users_search_path(id: @user.id), remote: true do %>
+      <%= date_field :select, "select_time" %>
+      <%= submit_tag "検索" %>
+    <% end %>
+    
+    <div id="search">
+      <%= render "search", count: @count %>
+    </div>
         
-    <h2>投稿数の前日比・前週比</h2>
+    <!--<h2>投稿数の前日比・前週比</h2>-->
     
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>今日の投稿数</th>
-          <th>前日の投稿数</th>
-          <th>前日比</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= @created_today %>
-          </td>
-          <td>
-            <%= @created_yesterday %>
-          </td>
-          <td>
-            <% if @created_yesterday == 0 %>
-              -
-            <% else %>
-              <%= @created_today/@created_yesterday.to_f * 100 %>%
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!--<table class="table table-bordered">-->
+    <!--  <thead>-->
+    <!--    <tr>-->
+    <!--      <th>今日の投稿数</th>-->
+    <!--      <th>前日の投稿数</th>-->
+    <!--      <th>前日比</th>-->
+    <!--    </tr>-->
+    <!--  </thead>-->
+    <!--  <tbody>-->
+    <!--    <tr>-->
+    <!--      <td>-->
+    <!--        <%#= @created_today %>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <%#= @created_yesterday %>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <%# if @created_yesterday == 0 %>-->
+    <!--          --->
+    <!--        <%# else %>-->
+    <!--          <%#= @created_today/@created_yesterday.to_f * 100 %>%-->
+    <!--        <%# end %>-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--  </tbody>-->
+    <!--</table>-->
     
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>今週の投稿数</th>
-          <th>前週の投稿数</th>
-          <th>前週比</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= @created_this_week %>
-          </td>
-          <td>
-            <%= @created_last_week %>
-          </td>
-          <td>
-            <% if @created_last_week == 0 %>
-              -
-            <% else %>
-              <%= @created_this_week/@created_last_week.to_f * 100 %>%
-            <% end %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <!--<table class="table table-bordered">-->
+    <!--  <thead>-->
+    <!--    <tr>-->
+    <!--      <th>今週の投稿数</th>-->
+    <!--      <th>前週の投稿数</th>-->
+    <!--      <th>前週比</th>-->
+    <!--    </tr>-->
+    <!--  </thead>-->
+    <!--  <tbody>-->
+    <!--    <tr>-->
+    <!--      <td>-->
+    <!--        <%#= @created_this_week %>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <%#= @created_last_week %>-->
+    <!--      </td>-->
+    <!--      <td>-->
+    <!--        <%# if @created_last_week == 0 %>-->
+    <!--          --->
+    <!--        <#% else %>-->
+    <!--          <%#= @created_this_week/@created_last_week.to_f * 100 %>%-->
+    <!--        <%# end %>-->
+    <!--      </td>-->
+    <!--    </tr>-->
+    <!--  </tbody>-->
+    <!--</table>-->
     
   </div>
 </div>

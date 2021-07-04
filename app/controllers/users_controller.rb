@@ -7,11 +7,11 @@ class UsersController < ApplicationController
     @books = @user.books
     @book = Book.new
     
-    @created_today = @user.books.where(created_at: 0.day.ago.all_day).count
-    @created_yesterday = @user.books.where(created_at: 1.day.ago.all_day).count
+    # @created_today = @user.books.where(created_at: 0.day.ago.all_day).count
+    # @created_yesterday = @user.books.where(created_at: 1.day.ago.all_day).count
     
-    @created_this_week = @user.books.where(created_at: 0.week.ago.all_week).count
-    @created_last_week = @user.books.where(created_at: 1.week.ago.all_week).count
+    # @created_this_week = @user.books.where(created_at: 0.week.ago.all_week).count
+    # @created_last_week = @user.books.where(created_at: 1.week.ago.all_week).count
   end
 
   def index
@@ -38,6 +38,14 @@ class UsersController < ApplicationController
     else
       render 'edit'
     end
+  end
+  
+  def search
+    @user = User.find(params[:id])
+    @books = @user.books
+    @book = Book.new
+    date = params[:select][:select_time] + " 00:00:00"..params[:select][:select_time] + " 23:59:59" 
+    @count = @user.books.where(created_at: date).count
   end
 
   private

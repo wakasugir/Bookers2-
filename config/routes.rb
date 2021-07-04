@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     end
     resource :relationships, only: [:create, :destroy]
   end
+  post 'users/search' => "users#search"
   
   resources :books do
     resource :favorites, only: [:create, :destroy]
