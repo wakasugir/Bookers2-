@@ -13,5 +13,23 @@
     <h2>Books</h2>
 
     <%= render 'index', books: @books%>
+    
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <% [*0..5].each do |i| %>
+            <th><%= 6 - i %>日前</th>
+          <% end %>
+          <th>今日</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <% [*0..6].reverse.each do |i| %>
+            <td><%= Book.where(created_at: i.day.ago.all_day).count %></td>
+          <% end %>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
