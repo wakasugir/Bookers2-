@@ -25,11 +25,39 @@
       </thead>
       <tbody>
         <tr>
-          <% [*0..6].reverse.each do |i| %>
-            <td><%= Book.where(created_at: i.day.ago.all_day).count %></td>
+          <% @book_count_list.each do |i| %>
+            <td><%= i %></td>
           <% end %>
         </tr>
       </tbody>
     </table>
+    
+    <canvas id="myChart"></canvas>
+    
   </div>
 </div>
+
+<script>
+  console.log("開始しました")
+  var ctx = document.getElementById("myChart");
+  var myChart = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["6日前", "5日前", "4日前", "3日前", "2日前", "1日前", "今日"],
+      datasets: [{
+        label: "投稿した本の数",
+        data: gon.book_count_list,
+        borderColor: "blue",
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero:true
+          }
+        }]
+      }
+    }
+  });
+</script>

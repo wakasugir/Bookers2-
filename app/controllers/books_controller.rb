@@ -4,6 +4,11 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
     @book = Book.new
+    @book_count_list = []
+    [*0..6].reverse.each do |i|
+      @book_count_list.append(Book.where(created_at: i.day.ago.all_day).count)
+    end
+    gon.book_count_list = @book_count_list
   end
 
   def show
