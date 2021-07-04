@@ -33,10 +33,10 @@
             <%= @created_yesterday %>
           </td>
           <td>
-            <% if @created_yesterday %>
+            <% if @created_yesterday == 0 %>
               -
             <% else %>
-              <%= (@created_today/@created_yesterday).floor * 100 %>%
+              <%= @created_today/@created_yesterday.to_f * 100 %>%
             <% end %>
           </td>
         </tr>
@@ -60,10 +60,10 @@
             <%= @created_last_week %>
           </td>
           <td>
-            <% if @created_last_week %>
+            <% if @created_last_week == 0 %>
               -
             <% else %>
-              <%= (@created_this_week/@created_last_week).floor * 100 %>%
+              <%= @created_this_week/@created_last_week.to_f * 100 %>%
             <% end %>
           </td>
         </tr>
