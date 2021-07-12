@@ -1,0 +1,26 @@
+<h2>Create Group</h2>
+
+<%= form_with model: @group, local: true do |f| %>
+    <%= render 'layouts/errors', obj: @group %>
+
+    <div class="field">
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :introduction %>
+        <%= f.text_area :introduction %>
+    </div>
+    
+    <div class="field">
+        <%= f.label :image %>
+        <%= f.attachment_field :image %>
+    </div>
+    
+    <div class="actions">
+        <%= f.submit "Create Group" %>
+    </div>
+    
+
+<% end %>

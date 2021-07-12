@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :books
   has_many :favorites
   has_many :book_comments
+  has_many :group_users
   validates :name, presence: true, length: {maximum: 10, minimum: 2}
   validates :introduction, length: {maximum: 50}
   
