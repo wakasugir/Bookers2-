@@ -1,0 +1,24 @@
+<div class='row'>
+	<div class='col-md-6 col-md-offset-3'>
+		<h1>Event Mail</h1>
+  <!-- <div class='col-md-3 col-md-offset-3'>
+  </div> -->
+  	    <%= render 'layouts/errors', obj: @email %>
+        <%= form_with model: @email do |f| %>
+          <div class="field row">
+            <%= f.label :title %>
+            <%= f.text_field :title, class: 'col-xs-12 book_title' %>
+          </div>
+        
+          <div class="field row">
+            <%= f.label :content %>
+            <%= f.text_area :body, class: 'col-xs-12 book_body'%>
+          </div>
+        
+          <div class="actions row">
+            <%= f.submit "送信", class: 'btn btn-primary col-xs-12'%>
+          </div>
+        <% end %>
+    </div>
+    <div class='col-md-3'></div>
+</div>

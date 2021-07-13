@@ -41,6 +41,11 @@
                             <% end %>
                         <% end %>
                     </td>
+                    <% if @group.owner_id == current_user.id %>
+                        <td>
+                            <%= link_to "Notice an Event", new_email_path, class: "btn btn-info" %>
+                        </td>
+                    <% end %>
                 </tr>
             </tbody>
         </table>

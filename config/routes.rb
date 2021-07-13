@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'emails/new'
+  get 'emails/show'
 	devise_for :users, controllers: {
     sessions: "public/sessions",
     registrations: "public/registrations"
@@ -25,6 +27,8 @@ Rails.application.routes.draw do
   resources :groups
   post 'groups/:id/join' => "groups#join", as: :group_join
   delete 'groups/:id/leave' => "groups#leave", as: :group_leave
+  
+  resources :emails, only: [:new, :show, :create]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

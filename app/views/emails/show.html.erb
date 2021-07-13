@@ -1,0 +1,18 @@
+<div class='row'>
+    
+	<div class='col-md-6 col-md-offset-3'>
+		<h1>送信が完了しました</h1>
+		<p>内容は以下の通りです。</p>
+        <div class="field row">
+            <h4>[タイトル]</h4>
+            <%= @email.title %>
+        </div>
+    
+        <div class="field row">
+            <h4>[本文]</h4>
+            <%= @email.body %>
+        </div>
+    </div>
+    
+    <div class='col-md-3'></div>
+</div>
