@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+    before_action :authenticate_user!
     before_action :is_owner, only: [:edit, :update]
     
     def index
@@ -20,6 +21,7 @@ class GroupsController < ApplicationController
         @group = Group.new(group_params)
         @group.owner_id = current_user.id
         if @group.save
+            group_user = GroupUser.create(user_id: current_user.id, group_id: @group.id)
             redirect_to groups_path
         else
             render :new
@@ -37,6 +39,24 @@ class GroupsController < ApplicationController
     
     def edit
         @group = Group.find(params[:id])
+    end
+    
+    def join
+        group = Group.find(params[:id])
+        group_user = GroupUser.new
+        group_user.user_id = current_user.id
+        group_user.group_id = group.id
+        if group_user.save
+            redirect_to group_path(group)
+        end
+    end
+
+    def leave
+        group = Group.find(params[:id])
+        group_user = GroupUser.find_by(user_id: current_user.id, group_id: group.id)
+        if group_user.destroy
+            redirect_to group_path
+        end
     end
     
     private

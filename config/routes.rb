@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   get 'home/about'
   
   resources :groups
+  post 'groups/:id/join' => "groups#join", as: :group_join
+  delete 'groups/:id/leave' => "groups#leave", as: :group_leave
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -11,16 +11,38 @@
 		<h2>Group detail</h2>
 		
         <table class='table'>
-            <tr>
-                <td><%= attachment_image_tag(@group, :image, size:"50x50", fallback: "no-image-icon.jpg") %></td>
-                <td><%= link_to @group.name, group_path(@group) %></td>
-                <td><%= @group.introduction %></td>
-                <td>
-                    <% if @group.owner_id == current_user.id %>
-                      <%= link_to "Edit", edit_group_path(@group), class:"btn btn-default"%>
-                    <% end %>
-                </td>
-            </tr>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>グループ名</th>
+                    <th>紹介文</th>
+                    <th>メンバー</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= attachment_image_tag(@group, :image, size:"50x50", fallback: "no-image-icon.jpg") %></td>
+                    <td><%= link_to @group.name, group_path(@group) %></td>
+                    <td><%= @group.introduction %></td>
+                    <td>
+                        <% @group.group_users.each do |group_user| %>
+                            <%= group_user.user.name %><br>
+                        <% end %>
+                    </td>
+                    <td>
+                        <% if @group.owner_id == current_user.id %>
+                          <%= link_to "Edit", edit_group_path(@group), class:"btn btn-default"%>
+                        <% else %>
+                            <% if @group.is_member?(current_user) %>
+                                <%= link_to "Leave the group", group_leave_path, method: :delete, class: "btn btn-danger" %>
+                            <% else %>
+                                <%= link_to "Join the group", group_join_path, method: :post, class: "btn btn-success" %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </div>
