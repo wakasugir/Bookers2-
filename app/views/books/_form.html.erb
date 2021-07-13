@@ -8,8 +8,26 @@
     <%= f.label :opinion %>
     <%= f.text_area :body, class: 'col-xs-12 book_body'%>
   </div>
+  
+  <% if book.rate.nil? %>
+    <% puts "true" %>
+    <div class="field row" id="rating-form">
+      <%= f.hidden_field :rate, :value => 'score' %>
+    </div>
+  <% else %>
+      <div id=<%= "data-score-" + book.rate.to_s %>></div>
+  <% end %>
 
   <div class="actions row">
     <%= f.submit class: 'btn btn-primary col-xs-12'%>
   </div>
 <% end %>
+
+<script>
+  $('#data-score-' + <%= book.rate %>).raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: "<%= book.rate %>",
+    readOnly: true
+  });
+</script>

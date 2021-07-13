@@ -12,6 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks
 //= require_tree .
 //= require bootstrap-sprockets
+//= require jquery.raty.js
+
+$(function() {
+  $('#rating-form').raty({
+    starOn: "/assets/star-on.png",
+    starOff: "/assets/star-off.png",
+    scoreName: 'product_comment[rate]'
+  });
+})

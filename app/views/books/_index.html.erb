@@ -22,7 +22,20 @@
           <%= render 'favorites/book', book: book, user: current_user%>
         </td>
         <td>コメント数: <%= book.book_comments.count %></td>
+        <td class=<%= "data-score-" + book.rate.to_s %>></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<script>
+  for(let i=1; i<6; i++){
+    $(`.data-score-` + i).raty({
+      starOn: "<%= asset_path('star-on.png') %>",
+      starOff: "<%= asset_path('star-off.png') %>",
+      score: `${i}`,
+      readOnly: true
+    });
+    console.log(i);
+  }
+</script>

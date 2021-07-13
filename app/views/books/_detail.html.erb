@@ -11,9 +11,19 @@
       <%= render 'favorites/book', book: book, user: current_user%>
     </td>
     <td>コメント数: <%= book.book_comments.count %></td>
+    <td id=<%= "data-score-" + book.rate.to_s %>></td>
     <% if book.user == current_user %>
       <td><%= link_to 'Edit', edit_book_path(book), class: "btn-sm btn-success edit_book_#{book.id}" %></td>
       <td><%= link_to 'Destroy', book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn-sm btn-danger destroy_book_#{book.id}"%></td>
     <% end %>
   </tr>
 </table>
+
+<script>
+  $('#data-score-' + <%= book.rate %>).raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    score: "<%= book.rate %>",
+    readOnly: true
+  });
+</script>

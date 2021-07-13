@@ -19,6 +19,10 @@ class BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
+    if params[:product_comment].present?
+      @book.rate = params[:product_comment][:rate].to_i
+    end
+    
     if @book.save
       redirect_to @book
     else
