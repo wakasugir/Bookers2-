@@ -2,8 +2,14 @@ class BooksController < ApplicationController
   before_action :authenticate_user!,only: [:create,:edit,:update,:destroy,:index]
 
   def index
-    @books = Book.all
     @book = Book.new
+    if params[:rank]
+      @books = Book.all.order(rate: "desc")
+    elsif params[:new]
+      @books = Book.all.order(created_at: "desc")  
+    else
+      @books = Book.all
+    end
   end
 
   def show
