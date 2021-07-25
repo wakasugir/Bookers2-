@@ -9,6 +9,11 @@
     <%= f.text_area :body, class: 'col-xs-12 book_body'%>
   </div>
   
+  <div class="field row">
+    <%= f.label :category %>
+    <%= f.text_field :category, class: 'col-xs-12 book_body' %>
+  </div>
+  
   <% if book.rate.nil? %>
     <% puts "true" %>
     <div class="field row" id="rating-form">

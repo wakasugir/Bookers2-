@@ -51,10 +51,16 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_url
   end
+  
+  def search
+    @books = Book.where(category: params[:search])
+    @book = Book.new
+    render :index
+  end
 
   private
     def book_params
-      params.require(:book).permit(:title, :body)
+      params.require(:book).permit(:title, :body, :category)
     end
 
     def screen_user(book)

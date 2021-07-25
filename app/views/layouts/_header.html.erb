@@ -16,6 +16,11 @@
           <li><%= link_to ' sign up', new_user_registration_path,class: 'glyphicon glyphicon-edit sign_up' %></li>
           <li><%= link_to ' login', new_user_session_path ,class: 'glyphicon glyphicon-log-in sign_in'%></li>
         <% end %>
+        
+        <%= form_tag(books_search_path,:method => 'get', class: "text-black-50") do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag '検索', :category => nil, class: 'btn btn-primary' %>
+        <% end %>
       </ul>
     </nav>
   </div>
